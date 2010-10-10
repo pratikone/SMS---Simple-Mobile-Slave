@@ -1,0 +1,21 @@
+It is an entirely unique application that is based on controlling your phone remotely just by sending SMS only. It only requires the app to be installed in the mobile to be controlled('slave' phone) and can be controlled by any phone capable of sending sms. 
+
+It often happens that one forgets to take phone to workplace leading to a lot of problem. The person might be expecting some important call or message or has to access some important data on the phone but can't use it as he has left the mobile at home. People who often travel also face such kind of problem every now and then.
+SMS app comes to their rescue in such scenario. That person only has to take any collegue's phone and send an sms to his phone .
+ As requested, the phone can do any of the following things as meesaged by him:
+Divert the calls to his office number or any number mentioned in the sms
+Re-sending all unread messages to the phone he is currently using.
+Receiving a message he sends by collegue's number and sending it to the desired number and again, receiving the reply and re-sending it to that same collegue's number (his phone acting as server).
+Sending a list of missed calls , if any.
+Receiving a contact name as message , searching it in its own phonebook database and sending back its corresponding phone number/email address.
+Taking a picture and sending it back again or, virtually, controlling all aspects of the phone
+Theft control, sending GPS location in short durations (activated just by sending msg to your own number)
+Many other implementations are possible depending on type of phone and situation (like if phone is connected to projector showing slides, go far off the room and use sms msg to change slides back and forth).
+
+The most important part of this app is that you can use any mobile phone(need not be a smartphone or have any software installed on it, just sms capability)i.e. master to control your mobile's (slave) activities. Only your phone should be running the SMS app.
+One more important feature is that there can be many master to one slave or many slaves controlled by one master.
+
+Technical Specifications
+Language used: Python
+Platform used: Google Android 2.2
+Using Google supported SL4A for coding scripts in python/perl/ruby etc etc.

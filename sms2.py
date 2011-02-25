@@ -1,3 +1,4 @@
+#Coded by PRATIK ANAND <pratik@pratikanand.com>
 import android
 import time
 droid=android.Android()

@@ -17,11 +17,20 @@ def unread(sender):   #fetch unread messages and send
    lb[k]=droid.smsGetMessageById(i)
    k=k+1
    print "***********"
+  print "this is lb"
   print lb
+  print "this is lb[0]"
+  print lb[0]
+  print "&&&&&&&&&&"
+  print len(lb)
+  print "*&*&*&*&"
+  print "this is lb[1]"
+  print lb[1]
   str=""
   i=0
+  #time.sleep(600)
   droid.smsMarkMessageRead(lc,1)
-  for i in range(0,len(lb[1])): 
+  for i in range(0,len(lb)): 
    str=str+"Sender:"+lb[i][1]['address']+" : "+lb[i][1]['body']+"\n"
   print str
   droid.smsSend(sender,str)
@@ -85,19 +94,19 @@ def toggle_ringer():  #toggle b/w silent and ringer
 
 def check(lc):   #checking for keyword
   global la 
-  la=droid.smsGetMessageIds(1)
+  la=droid.smsGetMessageIds(1) #id unread msg
   lb=la[1]
   print la
   #print lb
   for i in lb:
-    lc=droid.smsGetMessageById(i)
+    lc=droid.smsGetMessageById(i) #msg by id
     #print lc
     
     if lc:
       #print lc
       str=lc[1]['body'].split()
       
-      if "doc" in str:
+      if "doc" in str:     #key search doc
         ld=str
         le=lc[1]
         #print le
@@ -154,5 +163,5 @@ while(1):
           website(str2)    
  if not ld:
    print "Nothing returned"
-   droid.makeToast("Waiting...")
+   #droid.makeToast("Waiting...")
    

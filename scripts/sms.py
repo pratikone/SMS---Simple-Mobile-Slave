@@ -1,9 +1,38 @@
-# Coded by PRATIK ANAND <pratik@pratikanand.com>
+#Coded by PRATIK ANAND pratik@pratikanand.com
 import android
 import time
+import os
+from sqlite3 import dbapi2 as sqlite
 droid=android.Android()
 
 la={}
+
+def dbreset(passwd):
+	print "reset is working"
+	con=sqlite.connect('/sdcard/smspass.db')
+	cur=con.cursor()
+	cur.execute('create table passwd(pass TEXT)')
+	cur.execute('insert into passwd values("1234")')
+	con.commit()
+	
+	passwd="1234"
+	return passwd
+
+
+def dbconnection(passwd):
+	print "connection is ON"
+	con=sqlite.connect('/sdcard/smspass.db')
+	cur=con.cursor()
+	cur.execute('select * from passwd')
+	label=cur.fetchall()
+	print label[0][0]
+	passwd=label[0][0]
+	return passwd
+
+
+
+
+
 def unread(sender):   #fetch unread messages and send
   #la=droid.smsGetMessageIds(1)
   global la
@@ -93,7 +122,7 @@ def toggle_ringer():  #toggle b/w silent and ringer
 
 
 
-def check(lc):   #checking for keyword
+def check(lc,passwd):   #checking for keyword
   global la 
   la=droid.smsGetMessageIds(1) #id unread msg
   lb=la[1]
@@ -107,31 +136,43 @@ def check(lc):   #checking for keyword
       #print lc
       str=lc[1]['body'].split()
       
-      if "doc" in str:     #key search doc
-        ld=str
-        le=lc[1]
+      if "doc" in str and passwd in str:     #key search doc
+		 ld=str
+		 le=lc[1]
         #print le
-        ld=la[1]
-        ld[0]=i
-        #droid.smsMarkMessageRead(lb,1)        
-        return lc[1]
+		 ld=la[1]
+		 ld[0]=i
+        #droid.smsMarkMessageRead(lb,1)
+		 return lc[1]
     if not lc:
         print "no unread messages"
   return
+
 lc=['ac']
 str2="dsadas"
+passwd="1234"
 droid.dialogCreateSpinnerProgress("Simple Mobile Slave","Joining connections, starting services")
 droid.dialogShow()
 time.sleep(3)
 droid.dialogDismiss()
 droid.dialogCreateSpinnerProgress("Simple Mobile Slave","by Pratik Anand")
 droid.dialogShow()
-time.sleep(2)
+time.sleep(3)
 droid.dialogDismiss()
+
+#check for db
+
+bool=os.path.exists('/sdcard/smspass.db')
+print bool
+if(bool==False):
+	passwd=dbreset(passwd)
+else:
+	passwd=dbconnection(passwd)
+print passwd
 while(1):
  time.sleep(2)
  
- ld=check(lc)
+ ld=check(lc,passwd)
  if ld:
   str=ld['body'].split()
   print str[2]

@@ -63,7 +63,17 @@ def unread(sender):   #fetch unread messages and send
   for i in range(0,len(lb)): 
    str=str+"Sender:"+lb[i][1]['address']+" : "+lb[i][1]['body']+"\n"
   print str
-  droid.smsSend(sender,str)
+  print len(str)
+  num=len(str)/140
+  ctr=0
+  for msg in range(num+1):
+		if(msg!=num):
+			strs=str[ctr:ctr+140]
+			ctr=ctr+140
+			droid.smsSend(sender,strs)
+		else:
+			strs=str[ctr:len(str)]
+			droid.smsSend(sender,strs)
   return
 
 

@@ -1,4 +1,5 @@
 #Coded by PRATIK ANAND pratik@pratikanand.com
+#github/irc/twitter/facebook : pratikone
 import android
 import time
 import os

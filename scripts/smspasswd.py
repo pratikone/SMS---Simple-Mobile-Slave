@@ -1,4 +1,5 @@
 #Created by PRATIK ANAND pratik@pratikanand.com
+#github/irc/twitter/facebook : pratikone
 import android
 from sqlite3 import dbapi2 as sqlite
 import os
